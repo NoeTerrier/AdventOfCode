@@ -98,13 +98,10 @@ fn find_badge(group_line: Vec<&str>) -> Result<char, &'static str> {
 // Part 1 and 2
 
 fn get_priority(c: char) -> u32 {
-    let priority = if c >= 'A' && c <= 'Z' {
-        c as u32 - 'A' as u32 + 27   //base + offset = 27 + 1 
-    } else if c >= 'a' && c <= 'z' {
-        c as u32 - 'a' as u32 + 1    //base + offset = 0  + 1
-    } else {
-        0
-    };
 
-    return priority;
+    match c {
+        'A'..='Z' => c as u32 - 'A' as u32 + 27,   //base + offset = 27 + 1 
+        'a'..='z' => c as u32 - 'a' as u32 + 1,    //base + offset = 0  + 1
+        _ => 0
+    }
 }
