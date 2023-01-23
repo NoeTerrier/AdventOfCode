@@ -52,6 +52,6 @@ fn parse_range(s: &str) -> (u32, u32) {
     let range : Vec<u32> = s.split('-').map(|s| s.parse::<u32>().unwrap()).collect();
     match range[..] {
         [from, to] => (from, to),
-        _ => panic!("vector doesn't contain 2 exaclty elements"),
+        _ => panic!("vector does not contain exactly 2 elements"),
     }
 }
