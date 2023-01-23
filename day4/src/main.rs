@@ -7,16 +7,13 @@ fn main() {
     let content = fs::read_to_string(filename)
         .expect("Unable to read file");
 
-    let lines = content.lines();
-
     let mut count_include = 0;
     let mut count_overlap = 0;
 
-    for line in lines {
+    for line in content.lines() {
         let groups : Vec<&str> = line.trim().split(',').collect();
 
         let mut range_1 = (0, 0);
-        let mut range_2 = (0, 0);
         let mut first_exists = false;
 
         for range in groups {
@@ -24,12 +21,11 @@ fn main() {
                 range_1 = parse_range(range);
                 first_exists = true;
             } else {
-                range_2 = parse_range(range);
+                let range_2 = parse_range(range);
+                
+                count_include += fully_include(range_1, range_2) as u32; 
+                count_overlap += overlapp(range_1, range_2) as u32;
             }
-            
-            count_include += if fully_include(range_1, range_2) {1} else {0}; 
-            count_overlap += if overlapp(range_1, range_2) {1} else {0};
-
         }
     }
     
