@@ -24,7 +24,7 @@ fn main() {
                 let range_2 = parse_range(range);
                 
                 count_include += fully_include(range_1, range_2) as u32; 
-                count_overlap += overlapp(range_1, range_2) as u32;
+                count_overlap += overlap(range_1, range_2) as u32;
             }
         }
     }
@@ -40,7 +40,7 @@ fn fully_include(range_1: (u32, u32), range_2: (u32, u32)) -> bool {
 }
 
 // PART 2
-fn overlapp(range_1: (u32, u32), range_2: (u32, u32)) -> bool {
+fn overlap(range_1: (u32, u32), range_2: (u32, u32)) -> bool {
     range_2.0 <= range_1.1 && range_1.1 <= range_2.1 || range_1.0 <= range_2.1 && range_2.1 <= range_1.1
 }
 
